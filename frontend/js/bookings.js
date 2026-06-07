@@ -1,17 +1,87 @@
 const API_URL = "http://localhost:3000/bookings";
 
+const selectedTutor =
+    localStorage.getItem(
+        "selectedTutorBooking"
+    );
+
+const selectedAvailability =
+    localStorage.getItem(
+        "selectedAvailabilityBooking"
+    );
+
+function fillBookingData() {
+
+    if (selectedTutor) {
+
+        const tutorInput =
+            document.getElementById(
+                "tutor_id"
+            );
+
+        if (tutorInput) {
+
+            tutorInput.value =
+                selectedTutor;
+        }
+    }
+
+    if (selectedAvailability) {
+
+        const availabilityInput =
+            document.getElementById(
+                "availability_id"
+            );
+
+        if (availabilityInput) {
+
+            availabilityInput.value =
+                selectedAvailability;
+        }
+    }
+
+    const user =
+        JSON.parse(
+            localStorage.getItem("user")
+        );
+
+    if (
+        user &&
+        user.role === "student"
+    ) {
+
+        const studentInput =
+            document.getElementById(
+                "student_id"
+            );
+
+        if (studentInput) {
+
+            studentInput.value =
+                user.id;
+        }
+    }
+}
+
 async function loadBookings() {
 
-    const response = await fetch(API_URL);
-    const bookings = await response.json();
+    const response =
+        await fetch(API_URL);
 
-    const list = document.getElementById("bookingList");
+    const bookings =
+        await response.json();
+
+    const list =
+        document.getElementById(
+            "bookingList"
+        );
 
     list.innerHTML = "";
 
     bookings.forEach(booking => {
 
-        const li = document.createElement("li");
+        const li =
+            document.createElement("li");
 
         li.innerHTML =
             `Booking #${booking.id}
@@ -27,31 +97,57 @@ async function loadBookings() {
 async function createBooking() {
 
     const student_id =
-        document.getElementById("student_id").value;
+        document.getElementById(
+            "student_id"
+        ).value;
 
     const tutor_id =
-        document.getElementById("tutor_id").value;
+        document.getElementById(
+            "tutor_id"
+        ).value;
 
     const availability_id =
-        document.getElementById("availability_id").value;
+        document.getElementById(
+            "availability_id"
+        ).value;
 
-    const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            student_id,
-            tutor_id,
-            availability_id
-        })
-    });
+    const response =
+        await fetch(API_URL, {
 
-    const message = await response.text();
+            method: "POST",
+
+            headers: {
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+
+                student_id,
+                tutor_id,
+                availability_id
+
+            })
+        });
+
+    const message =
+        await response.text();
 
     alert(message);
+
+    if (response.ok) {
+
+        localStorage.removeItem(
+            "selectedTutorBooking"
+        );
+
+        localStorage.removeItem(
+            "selectedAvailabilityBooking"
+        );
+    }
 
     loadBookings();
 }
 
+fillBookingData();
 loadBookings();

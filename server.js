@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -20,6 +21,18 @@ app.use('/bookings', bookingRoutes);
 const reviewRoutes = require('./routes/reviews');
 app.use('/reviews', reviewRoutes);
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
-});
+const userRoutes = require('./routes/users');
+app.use('/users', userRoutes);
+
+if (require.main === module) {
+
+    app.listen(3000, () => {
+
+        console.log(
+            "Server running on port 3000"
+        );
+
+    });
+}
+
+module.exports = app;
