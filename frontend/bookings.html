@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookings</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="navbar">
+
+    <a href="index.html">Home</a>
+
+    <a href="tutors.html">Tutors</a>
+
+    <a href="students.html">Students</a>
+
+    <a href="bookings.html">Bookings</a>
+
+    <a href="reviews.html">Reviews</a>
+
+    <a id="profileLink"
+       href="profile.html"
+       style="display:none;">
+       My Profile
+    </a>
+
+    <a id="registerLink"
+       href="register.html">
+       Register
+    </a>
+
+    <a id="loginLink"
+       href="login.html">
+       Login
+    </a>
+
+    <a id="logoutLink"
+       href="#"
+       onclick="logout()"
+       style="display:none;">
+       Logout
+    </a>
+
+    <span id="welcomeUser"></span>
+
+</div>
+
+<h1>Bookings</h1>
+
+
+<input type="number" id="student_id" placeholder="Student ID">
+<input type="number" id="tutor_id" placeholder="Tutor ID">
+<input type="number" id="availability_id" placeholder="Availability ID">
+
+<button onclick="createBooking()">Create Booking</button>
+
+<h2>All Bookings</h2>
+
+<ul id="bookingList"></ul>
+
+<script src="js/bookings.js"></script>
+    <script src="js/auth.js"></script>
+
+
+</body>
+</html>

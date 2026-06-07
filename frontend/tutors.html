@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tutors</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+     <div class="navbar">
+
+    <a href="index.html">Home</a>
+
+    <a href="tutors.html">Tutors</a>
+
+    <a href="students.html">Students</a>
+
+    <a href="bookings.html">Bookings</a>
+
+    <a href="reviews.html">Reviews</a>
+
+    <a id="profileLink"
+       href="profile.html"
+       style="display:none;">
+       My Profile
+    </a>
+
+    <a id="registerLink"
+       href="register.html">
+       Register
+    </a>
+
+    <a id="loginLink"
+       href="login.html">
+       Login
+    </a>
+
+    <a id="logoutLink"
+       href="#"
+       onclick="logout()"
+       style="display:none;">
+       Logout
+    </a>
+
+    <span id="welcomeUser"></span>
+
+</div>
+
+    <h1>Tutors</h1>
+
+<h2>Search Tutors</h2>
+
+<input
+    type="text"
+    id="searchSubject"
+    placeholder="Search by Subject">
+
+<button onclick="searchTutors()">
+    Search
+</button>
+
+<input
+    type="number"
+    id="maxPrice"
+    placeholder="Max Price">
+
+<button onclick="filterPrice()">
+    Filter Price
+</button>
+
+<button onclick="loadTutors()">
+    Reset
+</button>
+
+
+
+    <div class="tutor-only">
+
+    <input type="text" id="name">
+    <input type="text" id="subject">
+    <input type="number" id="price">
+
+    <button onclick="addTutor()">
+        Add Tutor
+    </button>
+
+</div>
+
+    <h2>All Tutors</h2>
+
+    <ul id="tutorList"></ul>
+
+    <script src="js/tutors.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/role.js"></script>
+
+
+</body>
+</html>
